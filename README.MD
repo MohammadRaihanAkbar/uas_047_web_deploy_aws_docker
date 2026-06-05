@@ -42,4 +42,4 @@
 
 ![1780652622937](image/README/1780652622937.png)
 
-### B. Buat webnya
+### B. Buat repo web dinamis
