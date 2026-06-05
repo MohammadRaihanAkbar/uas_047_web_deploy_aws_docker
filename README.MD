@@ -25,9 +25,21 @@
 ![1780641354808](image/README/1780641354808.png)
 
 ## 7. Membuat token access docker
+
 ![1780641944831](image/README/1780641944831.png)
 
 ## 8. Setting Secret_key Github
+
 ![1780642364985](image/README/1780642364985.png)
 
 ## 9. Deploy Web Statis
+
+![1780647324329](image/README/1780647324329.png)
+
+## 10. Deploy Web Dinamis
+
+### A. Buat db baru uas47 dan beri previllage ke usercompro_2388010047
+
+![1780652622937](image/README/1780652622937.png)
+
+### B. Buat webnya
