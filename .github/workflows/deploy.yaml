@@ -35,6 +35,6 @@ jobs:
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         port: 22
         script: |
-          docker rm -f uas_047_web_deploy_aws_docker || true
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
-          docker run -d --name uas_047_web_deploy_aws_docker -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
+          sudo docker rm -f uas_047_web_deploy_aws_docker || true
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
+          sudo docker run -d --name uas_047_web_deploy_aws_docker -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
