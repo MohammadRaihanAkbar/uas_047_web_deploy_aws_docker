@@ -21,7 +21,6 @@ COPY --from=builder /app/.next/standalone ./.next/standalone
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# ✅ Copy node_modules ke standalone (fix mysql2 & bcryptjs tidak terbundle)
 COPY --from=builder /app/node_modules ./.next/standalone/node_modules
 
 EXPOSE 3000

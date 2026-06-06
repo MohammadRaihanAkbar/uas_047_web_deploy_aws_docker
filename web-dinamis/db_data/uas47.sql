@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- password: admin123 (bcrypt hash)
 INSERT INTO users (username, password, role) VALUES
-('admin', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'admin');
+('admin', '$2b$10$E88joOa.CdE9LkNJPY0W9exC8Qm4TBiglLTwUbZ1HPtkx7aO8hUCK', 'admin');
 
 -- Tabel layanan pemakaman
 CREATE TABLE IF NOT EXISTS layanan (
