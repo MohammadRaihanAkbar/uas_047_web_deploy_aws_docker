@@ -2,10 +2,10 @@ name: Deploy Web Dinamis to AWS EC2
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'web-dinamis/**'
-      - '.github/workflows/deploy-web-dinamis.yml'
+      - "web-dinamis/**"
+      - ".github/workflows/deploy-web-dinamis.yml"
   workflow_dispatch: # ← bisa trigger manual dari GitHub
 
 jobs:
@@ -27,6 +27,7 @@ jobs:
           context: ./web-dinamis
           file: ./web-dinamis/Dockerfile
           push: true
+          no-cache: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/uasweb_dinamis:latest
 
   deploy-to-ec2:
