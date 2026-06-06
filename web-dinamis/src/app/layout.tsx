@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], weight: ["300", "400", "600", "800"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Taman Abadi Memorial Park Raihan Akbar | Tempat Peristirahatan Terakhir",
+  title: "Taman Abadi Memorial Park | Tempat Peristirahatan Terakhir",
   description: "Taman Abadi Memorial Park menyediakan layanan pemakaman profesional, kavling pemakaman premium, dan perawatan taman makam yang terpercaya.",
   keywords: ["pemakaman", "memorial park", "taman makam", "layanan duka", "kavling makam"],
 };

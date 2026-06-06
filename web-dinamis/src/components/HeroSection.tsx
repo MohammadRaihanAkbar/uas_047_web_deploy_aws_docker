@@ -25,7 +25,7 @@ export default function HeroSection() {
 
       <span className="hero-tagline">Tempat Peristirahatan Terakhir yang Damai</span>
       <h1 className="hero-title">
-        TAMAN ABADI
+        TAMAN ABADI RAIHAN AKBAR
         <br />
         <span className="hero-title--gradient">MEMORIAL PARK</span>
       </h1>
