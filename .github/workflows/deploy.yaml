@@ -34,17 +34,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Copy Compose file via SCP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USERNAME }}
-          key: ${{ secrets.AWS_PRIVATE_KEY }}
-          port: 22
-          source: "web-statis/docker-compose.yml"
-          target: "/home/ubuntu/uas_rai"
-          strip_components: 1
-
       - name: Deploy Web Statis via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -53,10 +42,12 @@ jobs:
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /home/ubuntu/uas_rai
-            export DOCKERHUB_USERNAME="${{ secrets.DOCKERHUB_USERNAME }}"
-            docker compose pull
-            docker compose down || true
-            docker compose up -d
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
+            docker rm -f container-statis || true
+            docker run -d \
+              --name container-statis \
+              -p 80:80 \
+              --restart always \
+              ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
             echo "=== Status ==="
-            docker compose ps
+            docker ps
