@@ -6,6 +6,7 @@ on:
     paths:
       - 'web-dinamis/**'
       - '.github/workflows/deploy-web-dinamis.yml'
+  workflow_dispatch: # ← bisa trigger manual dari GitHub
 
 jobs:
   build-and-deploy-web-dinamis:
@@ -13,15 +14,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Debug Path
-        run: |
-          echo "Lokasi saat ini:"
-          pwd
-          echo "Isi folder saat ini:"
-          ls -F
-          echo "Isi folder web-dinamis:"
-          ls -F web-dinamis/
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -35,10 +27,7 @@ jobs:
           context: ./web-dinamis
           file: ./web-dinamis/Dockerfile
           push: true
-          # ✅ Tambah tag dengan commit SHA agar lebih traceable
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/uasweb_dinamis:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/uasweb_dinamis:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/uasweb_dinamis:latest
 
   deploy-to-ec2:
     runs-on: ubuntu-latest
@@ -47,28 +36,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Cleanup old containers on EC2
-        uses: appleboy/ssh-action@v1.0.3  # ✅ Pakai versi tetap
-        with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USERNAME }}
-          key: ${{ secrets.AWS_PRIVATE_KEY }}
-          port: 22
-          script: |
-            # ✅ Gunakan nama image yang konsisten
-            docker rm -f uasweb_dinamis || true
-            
-            # ✅ Turunkan compose jika folder ada
-            if [ -d "/home/ubuntu/container-dinamis/uasweb-dinamis" ]; then
-              cd /home/ubuntu/container-dinamis/uasweb-dinamis
-              docker compose down || true
-            fi
-            
-            # ✅ Buat folder target jika belum ada
-            mkdir -p /home/ubuntu/container-dinamis/uasweb-dinamis
-
       - name: Copy Compose file to EC2 via SCP
-        uses: appleboy/scp-action@v0.1.7  # ✅ Pakai versi tetap
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
@@ -76,10 +45,10 @@ jobs:
           port: 22
           source: "web-dinamis/docker-compose.yml,web-dinamis/db_data/uas47.sql"
           target: "/home/ubuntu/container-dinamis/uasweb-dinamis"
-          strip_components: 1  # hasil: target/docker-compose.yml & target/db_data/uas47.sql
+          strip_components: 1
 
       - name: Deploy Web Dinamis via SSH
-        uses: appleboy/ssh-action@v1.0.3  # ✅ Versi konsisten
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
@@ -87,14 +56,9 @@ jobs:
           port: 22
           script: |
             cd /home/ubuntu/container-dinamis/uasweb-dinamis
-            
-            # ✅ Export variable dengan benar
-            export DOCKERHUB_USERNAME="${{ secrets.DOCKERHUB_USERNAME }}"
-            
-            # ✅ Pull image terbaru lalu jalankan
-            docker compose pull
-            docker compose up -d --remove-orphans
-            
-            # ✅ Verifikasi container berjalan
+            docker pull 13raihanakbar/uasweb_dinamis:latest
+            docker compose down || true
+            DOCKERHUB_USERNAME=13raihanakbar docker compose up -d --remove-orphans
+            docker image prune -af
             echo "=== Status Container ==="
             docker compose ps
