@@ -6,6 +6,7 @@ on:
     paths:
       - 'web-statis/**'
       - '.github/workflows/deploy.yaml'
+  workflow_dispatch:
 
 jobs:
   build-and-push:
@@ -25,15 +26,13 @@ jobs:
         with:
           context: ./web-statis
           push: true
+          no-cache: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
 
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Deploy Web Statis via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -42,12 +41,9 @@ jobs:
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           port: 22
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
-            docker rm -f container-statis || true
-            docker run -d \
-              --name container-statis \
-              -p 80:80 \
-              --restart always \
-              ${{ secrets.DOCKERHUB_USERNAME }}/uas_047_web_deploy_aws_docker:latest
+            cd /home/ubuntu/container-dinamis/uasweb-dinamis
+            docker pull 13raihanakbar/uas_047_web_deploy_aws_docker:latest
+            DOCKERHUB_USERNAME=13raihanakbar docker compose up -d --force-recreate --no-deps container-statis
+            docker image prune -af
             echo "=== Status ==="
             docker ps
