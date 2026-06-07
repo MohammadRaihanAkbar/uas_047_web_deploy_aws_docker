@@ -59,3 +59,7 @@
 ![1780793497714](image/README/1780793497714.png)
 
 ![1780794054249](image/README/1780794054249.png)
+
+### Git action Hijau semua dipastikan web dan statis juga
+
+![1780794173079](image/README/1780794173079.png)
