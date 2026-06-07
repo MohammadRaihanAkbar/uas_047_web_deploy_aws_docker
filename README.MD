@@ -36,10 +36,26 @@
 
 ![1780647324329](image/README/1780647324329.png)
 
+![1780793305655](image/README/1780793305655.png)
+
 ## 10. Deploy Web Dinamis
 
-### A. Buat db baru uas47 dan beri previllage ke usercompro_2388010047
+### A. Buat db baru uas47 dan buat user account baru RaihanUAS bberi privelleage untuk db uas47
 
-![1780652622937](image/README/1780652622937.png)
+![1780793056255](image/README/1780793056255.png)
 
-### B. Buat repo web dinamis
+### B. Buat repo docker untuk web dinamis
+
+![1780793156600](image/README/1780793156600.png)
+
+### C. buat Website dinamis dahuluu
+
+- Buat Dockerfile yg menyesuaikan dengan bahasa dipakai disini saya pakai next.js
+- Buat juga file docker-compose.yml di dalam folder web-dinamis
+- terakhir buat deploy-web-dinamis.yml
+
+### D. Deploy deh webnya dan buat perubahan sedikit untuk test
+
+![1780793497714](image/README/1780793497714.png)
+
+![1780794054249](image/README/1780794054249.png)
