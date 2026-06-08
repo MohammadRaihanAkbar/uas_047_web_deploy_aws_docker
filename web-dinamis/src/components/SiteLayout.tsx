@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ParticlesBackground from "@/components/ParticlesBackground";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -12,6 +13,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       {!isHiddenRoute && <div className="mesh-bg" />}
+      {!isHiddenRoute && <ParticlesBackground />}
       {!isHiddenRoute && <Navbar />}
       <main className={isHiddenRoute ? "w-full min-h-screen" : ""}>{children}</main>
       {!isHiddenRoute && <Footer />}

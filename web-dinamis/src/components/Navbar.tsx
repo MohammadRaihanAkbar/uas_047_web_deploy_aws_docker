@@ -6,9 +6,9 @@ import Link from "next/link";
 const NAV_ITEMS = [
   { label: "Beranda", href: "/#hero" },
   { label: "Layanan", href: "/#services" },
+  { label: "Galeri", href: "/#gallery" },
   { label: "Berita", href: "/berita" },
   { label: "Tentang", href: "/#vision" },
-  { label: "Pengembang", href: "/#developer" },
   { label: "Kontak", href: "/#contact" },
 ];
 
@@ -25,6 +25,7 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <Link href="/" className="logo">
+        <span className="logo-icon">🕊️</span>
         Taman Abadi
       </Link>
 

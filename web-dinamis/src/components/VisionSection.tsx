@@ -43,9 +43,17 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 export default function VisionSection() {
   return (
     <section id="vision" className="vision">
+      {/* Background image on right side */}
+      <div className="vision-image-bg">
+        <img src="/images/vision-bg.png" alt="" aria-hidden="true" />
+      </div>
+
       <div className="vision-flex">
         <div className="vision-text">
-          <span className="hero-tagline">Tentang Kami</span>
+          <div className="vision-tagline">
+            <span className="hero-badge-dot" />
+            Tentang Kami
+          </div>
           <h2 className="vision-heading">
             Visi <span className="text-gradient">Kami</span>
           </h2>
@@ -71,10 +79,11 @@ export default function VisionSection() {
           </div>
         </div>
         <div className="vision-visual">
-          <div className="orbit-container">
-            <div className="orbit orbit--outer" />
-            <div className="orbit orbit--inner" />
-            <div className="orbit-core">🕊️</div>
+          <div className="vision-image-card">
+            <img src="/images/gallery-bg.png" alt="Fasilitas Taman Abadi Memorial Park" />
+            <div className="vision-image-card__overlay">
+              <p>🕊️ Taman Abadi Memorial Park</p>
+            </div>
           </div>
         </div>
       </div>

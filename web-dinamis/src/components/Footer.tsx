@@ -5,14 +5,21 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <Link href="/" className="logo">Taman Abadi</Link>
-          <p className="footer-tagline">Tempat Peristirahatan Terakhir yang Damai</p>
+          <Link href="/" className="logo">
+            <span className="logo-icon">🕊️</span>
+            Taman Abadi
+          </Link>
+          <p className="footer-tagline">
+            Tempat Peristirahatan Terakhir yang Damai. Memberikan kehormatan dan ketenangan 
+            bagi setiap keluarga yang kami layani.
+          </p>
         </div>
         <div className="footer-links">
           <div className="footer-col">
             <h4>Menu</h4>
             <Link href="/#hero">Beranda</Link>
             <Link href="/#services">Layanan</Link>
+            <Link href="/#gallery">Galeri</Link>
             <Link href="/berita">Berita</Link>
             <Link href="/#vision">Tentang</Link>
           </div>

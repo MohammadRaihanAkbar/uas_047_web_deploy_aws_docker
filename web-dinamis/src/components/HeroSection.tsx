@@ -20,23 +20,46 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="hero" ref={sectionRef}>
-      <div className="floating-accent" style={{ top: "20%", left: "10%" }} />
-      <div className="floating-accent floating-accent--alt" style={{ bottom: "10%", right: "15%" }} />
+      {/* Background Image */}
+      <div className="hero-bg-image">
+        <img src="/images/hero-bg.png" alt="" aria-hidden="true" />
+      </div>
+      <div className="hero-overlay" />
 
-      <span className="hero-tagline">Tempat Peristirahatan Terakhir yang Damai</span>
-      <h1 className="hero-title">
-        TAMAN ABADI RAIHAN AKBARR
-        <br />
-        <span className="hero-title--gradient">MEMORIAL PARK</span>
-      </h1>
-      <p className="hero-description">
-        Kami menghadirkan layanan pemakaman profesional dengan penuh kehormatan
-        dan kasih sayang. Memberikan ketenangan bagi yang pergi dan kedamaian
-        bagi yang ditinggalkan.
-      </p>
-      <a href="#services" className="cta-button">
-        LIHAT LAYANAN KAMI
-      </a>
+      {/* Content */}
+      <div className="hero-content">
+        <div className="hero-badge">
+          <span className="hero-badge-dot" />
+          Tempat Peristirahatan Terakhir yang Damai
+        </div>
+
+        <h1 className="hero-title">
+          TAMAN ABADI
+          <br />
+          <span className="hero-title--gradient">MEMORIAL PARK</span>
+        </h1>
+
+        <p className="hero-description">
+          Kami menghadirkan layanan pemakaman profesional dengan penuh kehormatan
+          dan kasih sayang. Memberikan ketenangan bagi yang pergi dan kedamaian
+          bagi yang ditinggalkan.
+        </p>
+
+        <div className="hero-buttons">
+          <a href="#services" className="cta-button">
+            LIHAT LAYANAN KAMI
+          </a>
+          <a href="#contact" className="cta-button cta-button--outline">
+            HUBUNGI KAMI
+          </a>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="hero-scroll-indicator">
+        <span>Scroll</span>
+        <div className="scroll-line" />
+      </div>
     </section>
   );
 }
