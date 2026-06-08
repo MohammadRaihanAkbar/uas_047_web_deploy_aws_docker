@@ -47,7 +47,7 @@ export default function HeroSection() {
 
         <div className="hero-buttons">
           <a href="#services" className="cta-button">
-            LIHAT LAYANAN KAMI
+            LIHAT LAYANAN KAMI raihan-2388010047
           </a>
           <a href="#contact" className="cta-button cta-button--outline">
             HUBUNGI KAMI
